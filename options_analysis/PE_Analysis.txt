@@ -1,0 +1,15 @@
+***** GREEN bullish ****** DIXON, 12500.0, 2025-12-30 ***** 
+***** GREEN bullish ****** HFCL, 65.0, 2025-12-30 ***** 
+***** GREEN bullish ****** HFCL, 66.0, 2025-12-30 ***** 
+***** GREEN bullish ****** HFCL, 68.0, 2025-12-30 ***** 
+***** GREEN bullish ****** LODHA, 1080.0, 2025-12-30 ***** 
+***** GREEN bullish ****** LODHA, 1100.0, 2025-12-30 ***** 
+***** GREEN bullish ****** NBCC, 109.0, 2025-12-30 ***** 
+***** GREEN bullish ****** NCC, 162.5, 2025-12-30 ***** 
+***** GREEN bullish ****** NCC, 165.0, 2025-12-30 ***** 
+***** GREEN bullish ****** NCC, 167.5, 2025-12-30 ***** 
+***** GREEN bullish ****** SAIL, 130.0, 2025-12-30 ***** 
+***** GREEN bullish ****** TITAGARH, 720.0, 2025-12-30 ***** 
+***** GREEN bullish ****** TITAGARH, 760.0, 2025-12-30 ***** 
+***** GREEN bullish ****** TRENT, 4100.0, 2025-12-30 ***** 
+***** GREEN bullish ****** TIINDIA, 2550.0, 2025-12-30 ***** 

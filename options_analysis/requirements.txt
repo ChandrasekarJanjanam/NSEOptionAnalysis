@@ -1,0 +1,8 @@
+kiteconnect==4.2.2
+selenium==4.15.0
+webdriver-manager==4.0.1
+pyotp==2.8.0
+pandas==2.1.0
+nsepython==0.0.17
+pytz==2023.3
+python-dotenv==1.0.0
