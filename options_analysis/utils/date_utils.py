@@ -70,6 +70,13 @@ def get_working_days():
         prev_monday = get_nth_working_day(2, 0)
         last_monday = get_nth_working_day(1, 0)
 
+    if datetime.today().weekday() == 1:  # Tuesday
+        prev_monday = get_nth_working_day(3, 0)
+        last_monday = get_nth_working_day(2, 0)
+
+    if datetime.today().weekday() == 2:  # Wednesday
+        prev_monday = get_nth_working_day(3, 0)
+        last_monday = get_nth_working_day(2, 0)
 
     logging.info(f"Before holiday check --> {prev_monday}, {prev_friday}, {last_monday}, {last_friday}")
 

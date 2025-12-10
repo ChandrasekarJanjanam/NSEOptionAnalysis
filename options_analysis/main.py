@@ -47,7 +47,7 @@ def main():
 
             # Fetch OHLC data
             daily_ohlc_df, option_type = fetch_ohlc_data(kite, all_options_df)
-            # daily_ohlc_df = pd.read_csv('zerodha_NFO_filtered_CE_daily_OHLC_01-Nov-2025 21-55-22.csv')
+            # daily_ohlc_df = pd.read_csv('zerodha_NFO_filtered_CE_daily_OHLC_09-Dec-2025 23-50-28.csv')
 
             # Get weekly data
             weekly_ohlc_df = get_weekly_data(daily_ohlc_df)
