@@ -106,8 +106,8 @@ class ZerodhaAuthenticator:
             driver.find_element(By.ID, "userid").send_keys(totp)
             driver.find_element(By.XPATH, "//button[@type='submit']").click()
             
-            logging.info("OTP Validated.. going to sleep for 2 secs")
-            time.sleep(2)
+            logging.info("OTP Validated.. going to sleep for 3 secs")
+            time.sleep(3)
             
             # Extract request token
             current_url = driver.current_url
