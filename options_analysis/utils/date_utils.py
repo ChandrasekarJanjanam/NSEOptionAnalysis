@@ -21,7 +21,7 @@ def holiday_check(date):
         # df_holidays = pd.json_normalize(nse_holidays()['FO'])
 
         # Get holidays from sheet
-        df_holidays = pd.read_excel('nse_holidays_2025.xlsx')
+        df_holidays = pd.read_excel('nse_holidays_2026.xlsx')
 
     except Exception as e:
         logging.error(f"Error fetching holidays from NSE: {e}")

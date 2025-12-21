@@ -90,7 +90,7 @@ class ZerodhaAuthenticator:
             wait = WebDriverWait(driver, 15)
 
 
-            logging.info(f"✅ credential {self.ZERODHA_USER}, {self.ZERODHA_PASSWORD}", )
+            # logging.info(f"✅ credential {self.ZERODHA_USER}, {self.ZERODHA_PASSWORD}", )
 
             # Enter user ID and password
             wait.until(EC.presence_of_element_located((By.ID, "userid"))).send_keys(self.ZERODHA_USER)
@@ -107,7 +107,7 @@ class ZerodhaAuthenticator:
             driver.find_element(By.XPATH, "//button[@type='submit']").click()
             
             logging.info("OTP Validated.. going to sleep for 3 secs")
-            time.sleep(3)
+            time.sleep(5)
             
             # Extract request token
             current_url = driver.current_url
