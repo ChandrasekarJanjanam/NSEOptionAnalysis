@@ -44,7 +44,7 @@ def main():
         for option_type in option_types:
             logging.info(f"######### {option_type} Analysis - START ############ ")
 
-            all_options_df = process_options_data(kite, instruments_df, option_type)
+            all_options_df, expiry_date = process_options_data(kite, instruments_df, option_type)
 
             if all_options_df.empty:
                 logging.warning("No options data found. Exiting.")
@@ -60,9 +60,9 @@ def main():
             # weekly_ohlc_df = pd.read_csv('zerodha_NFO_filtered_PE_weekly_OHLC_30-Nov-2025 16-15-58.csv')
 
             # Analyze for bullish patterns
-            analyze_bullish_patterns(weekly_ohlc_df, f"{option_type}_Analysis.txt")
+            analyze_bullish_patterns(weekly_ohlc_df, f"{option_type}_Analysis-{expiry_date}.txt")
 
-            logging.info(f"######### {option_type} Analysis - END ############ ")
+            logging.info(f"######### {option_type} Analysis - {expiry_date} - END ############ ")
 
     except Exception as e:
         logging.error(f"Program failed with error: {e}")
@@ -110,7 +110,7 @@ def process_options_data(kite, instruments_df, option_type="PE"):
     # all_options_df.to_csv(csv_filename, index=False)
     logging.info(f"Filtered options data saved to {csv_filename}")
     
-    return all_options_df
+    return all_options_df, expiry_date
 
 def get_weekly_data(daily_ohlc_df, first_week_open_date, first_week_close_date,
                     last_week_open_date, last_week_close_date):
