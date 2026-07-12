@@ -3,6 +3,8 @@ Data fetching utilities for Zerodha API
 """
 
 import logging
+import os
+
 import pandas as pd
 from datetime import datetime, timedelta
 
@@ -14,7 +16,9 @@ def get_instruments(kite, exchange="NFO"):
     if not instruments_df.empty:
         formatted = datetime.now().strftime("%d-%b-%Y %H-%M-%S")
         csv_filename = f"zerodha_NFO_original_{formatted}.csv"
-        instruments_df.to_csv(csv_filename, index=False)
+        # instruments_df.to_csv(csv_filename, index=False)
+        os.makedirs("extracts", exist_ok=True)
+        instruments_df.to_csv(os.path.join("extracts", csv_filename), index=False)
         logging.info(f"Instruments saved to {csv_filename}")
     
     return instruments_df
@@ -87,7 +91,9 @@ def fetch_ohlc_data(kite, all_options_df):
     # Save to CSV
     formatted = datetime.now().strftime("%d-%b-%Y %H-%M-%S")
     csv_filename = f"zerodha_NFO_filtered_{option_type}_daily_OHLC_{formatted}.csv"
-    daily_ohlc_df.to_csv(csv_filename, index=False)
+    # daily_ohlc_df.to_csv(csv_filename, index=False)
+    os.makedirs("extracts", exist_ok=True)
+    daily_ohlc_df.to_csv(os.path.join("extracts", csv_filename), index=False)
     logging.info(f"Daily OHLC data saved to {csv_filename}")
     
     return daily_ohlc_df, option_type
