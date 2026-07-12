@@ -3,6 +3,8 @@ Main execution script for Zerodha options analysis
 """
 
 import logging
+import os
+
 import pandas as pd
 from datetime import datetime
 
@@ -22,12 +24,15 @@ except ImportError:
 def main():
     """Main execution function"""
     setup_logging()
-    # get_working_days()
-
-
+    logging.info("Starting Zerodha Options Analysis Program")
     try:
         # Authenticate with Zerodha
         authenticator = ZerodhaAuthenticator()
+
+        # Get working days
+        first_week_open_date, first_week_close_date, last_week_open_date, last_week_close_date = get_working_days()
+
+        # Perform kite authentication
         kite = authenticator.authenticate()
 
         # Fetch instruments
@@ -50,7 +55,8 @@ def main():
             # daily_ohlc_df = pd.read_csv('zerodha_NFO_filtered_CE_daily_OHLC_09-Dec-2025 23-50-28.csv')
 
             # Get weekly data
-            weekly_ohlc_df = get_weekly_data(daily_ohlc_df)
+            weekly_ohlc_df = get_weekly_data(daily_ohlc_df, first_week_open_date, first_week_close_date,
+                                             last_week_open_date, last_week_close_date)
             # weekly_ohlc_df = pd.read_csv('zerodha_NFO_filtered_PE_weekly_OHLC_30-Nov-2025 16-15-58.csv')
 
             # Analyze for bullish patterns
@@ -99,14 +105,17 @@ def process_options_data(kite, instruments_df, option_type="PE"):
     # Save filtered data
     formatted = datetime.now().strftime("%d-%b-%Y %H-%M-%S")
     csv_filename = f"zerodha_NFO_filtered_{option_type}_options_{formatted}.csv"
-    all_options_df.to_csv(csv_filename, index=False)
+    os.makedirs("extracts", exist_ok=True)
+    all_options_df.to_csv(os.path.join("extracts", csv_filename), index=False)
+    # all_options_df.to_csv(csv_filename, index=False)
     logging.info(f"Filtered options data saved to {csv_filename}")
     
     return all_options_df
 
-def get_weekly_data(daily_ohlc_df):
+def get_weekly_data(daily_ohlc_df, first_week_open_date, first_week_close_date,
+                    last_week_open_date, last_week_close_date):
     """Extract weekly OHLC data"""
-    first_week_open_date, first_week_close_date, last_week_open_date, last_week_close_date = get_working_days()
+    # first_week_open_date, first_week_close_date, last_week_open_date, last_week_close_date = get_working_days()
     
     first_week_open_date = first_week_open_date.strftime("%Y-%m-%d")
     first_week_close_date = first_week_close_date.strftime("%Y-%m-%d")
@@ -123,7 +132,9 @@ def get_weekly_data(daily_ohlc_df):
     option_type = weekly_ohlc_df["option_type"].iloc[0] if not weekly_ohlc_df.empty else "UNKNOWN"
     formatted = datetime.now().strftime("%d-%b-%Y %H-%M-%S")
     csv_filename = f"zerodha_NFO_filtered_{option_type}_weekly_OHLC_{formatted}.csv"
-    weekly_ohlc_df.to_csv(csv_filename, index=False)
+    # weekly_ohlc_df.to_csv(csv_filename, index=False)
+    os.makedirs("extracts", exist_ok=True)
+    weekly_ohlc_df.to_csv(os.path.join("extracts", csv_filename), index=False)
     logging.info(f"Weekly OHLC data saved to {csv_filename}")
     
     return weekly_ohlc_df

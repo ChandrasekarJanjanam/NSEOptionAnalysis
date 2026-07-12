@@ -29,10 +29,10 @@ def get_expiry_date(instruments_df, symbol="ABB"):
     selected_expiry = expiries[0]
     today = pd.Timestamp(datetime.today().date())
     
-    if (selected_expiry - today).days < 10 and len(expiries) > 1:
+    if (selected_expiry - today).days < 30 and len(expiries) > 1:
         selected_expiry = expiries[1]
 
-    logging.info(f"selected_expiry: {selected_expiry.date()}")
+    logging.info(f"✅✅✅✅✅✅ selected_expiry: {selected_expiry.date()} ✅✅✅✅✅✅")
     return selected_expiry.date()
 
 def filter_option_strikes(df, symbol: str, min_strike: float, option_type: str = "CE", expiry: str = None):
